@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <PlayerInfo/>
+    {{ this.players }}
   </div>
 </template>
 
@@ -15,6 +16,18 @@ export default {
   components: {
     PlayerInfo
   },
+  data() {
+    return {
+      players: null
+    }
+  },
+  mounted() {
+    var vm = this
+    axios.get("http://localhost:5000/api/allplayers")
+    .then(function(response) {
+      vm.players = response
+    })
+  }
 }
 </script>
 

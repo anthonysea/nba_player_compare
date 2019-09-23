@@ -31,14 +31,5 @@ export default {
             data: {}
         }
     },
-    methods: {
-        searchForPlayer() {
-            var vm = this
-            axios.get(`https://www.balldontlie.io/api/v1/players?search=${this.inputText}`)
-                .then(function(response) {
-                    vm.data = response
-                })
-        },
-    }
 }
 </script>
