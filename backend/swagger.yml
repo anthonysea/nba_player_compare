@@ -1,0 +1,32 @@
+swagger: "2.0"
+info:
+  description: This API will use the nba_py package to serve data to our Vue.js frontend
+  version: "1.0.0"
+  title: nba_py API
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/api"
+
+paths:
+  /allplayers:
+    get:
+      operationId: "server.allplayers"
+      tags:
+        - "AllPlayers"
+      summary: "Endpoint to retrieve the playername-id hashmap to correlate player names with ids for searching"
+      description: "Endpoint will return a hashmap of player name and id for all players"
+      responses:
+        200:
+          description: "Successfully return the playername-id dictionary"
+          schema:
+            type: array
+            items:
+              type: object 
+              properties:
+                playerName: 
+                  type: string
+                id:
+                  type: integer
