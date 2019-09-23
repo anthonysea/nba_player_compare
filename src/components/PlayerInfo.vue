@@ -5,11 +5,15 @@
             placeholder="Player to search for"
             @keydown.enter="searchForPlayer"
         />
-        <p>{{ this.inputText }}</p>
+        <p>{{ this.data }}</p>
+        <div id="player-stats">
+
+        </div>
     </div>
 </template>
 
 <script>
+const axios = require("axios").default
 import PlayerInput from "./PlayerInput"
 import PlayerBasicStats from "./PlayerBasicStats"
 import PlayerCareerSummary from "./PlayerCareerSummary"
@@ -23,12 +27,17 @@ export default {
     },
     data () {
         return {
-            inputText: ""
+            inputText: "",
+            data: {}
         }
     },
     methods: {
         searchForPlayer() {
-            this.inputText = "enter pressed"
+            var vm = this
+            axios.get(`https://www.balldontlie.io/api/v1/players?search=${this.inputText}`)
+                .then(function(response) {
+                    vm.data = response
+                })
         },
     }
 }
