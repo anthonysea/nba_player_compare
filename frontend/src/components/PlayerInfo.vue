@@ -2,10 +2,11 @@
     <div>
         <PlayerInput
             v-model="inputText"
+            :datalist="this.playerSearchResults"
             placeholder="Player to search for"
             @keyup="searchForPlayer"
         />
-        <p v-if="this.currentPlayer">{{ this.currentPlayer }}</p>
+        <p v-if="this.playerSearchResults.length">{{ this.playerSearchResults }}</p>
         <div id="player-stats">
             
         </div>
@@ -30,14 +31,14 @@ export default {
     },
     methods: {
         searchForPlayer: _.debounce(function() {
-            var fuse = new Fuse(this.players, {keys: ["name"]})
-            this.currentPlayer = fuse.search(this.inputText)
+            var fuse = new Fuse(this.players, {keys: ["name"], threshold: 0.5, shouldShort: true})
+            this.playerSearchResults = fuse.search(this.inputText).slice(0, 10)
         }, 300)
     },
     data () {
         return {
             inputText: "",
-            currentPlayer: null
+            playerSearchResults: []
         }
     },
 }
