@@ -11,7 +11,6 @@ def allplayers():
             "name": entry[2],
             "id": entry[0]
         })
-    print(resp)
     return resp, 200
 
 def playerinfo(playerid):
