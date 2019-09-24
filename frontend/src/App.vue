@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <PlayerInfo/>
+    <PlayerInfo :players="this.players"/>
   </div>
 </template>
 
@@ -8,17 +8,27 @@
 const axios = require("axios").default
 import PlayerInfo from "./components/PlayerInfo"
 
-
-
 export default {
   name: 'app',
   components: {
     PlayerInfo
   },
+  data() {
+    return {
+      players: null
+    }
+  },
+  mounted() {
+    var vm = this
+    axios.get("http://localhost:5000/api/allplayers")
+    .then(function(response) {
+      vm.players = response.data
+    })
+  }
 }
 </script>
 
-<style>
+<style lang="scss">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
