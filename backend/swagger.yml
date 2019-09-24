@@ -30,3 +30,29 @@ paths:
                   type: string
                 id:
                   type: integer
+  /commonplayerinfo/{playerid}:
+    get:
+      operationId: "endpoints.playerinfo"
+      tags:
+      - "CommonPlayerInfo"
+      summary: "Endpoint to retrieve common player info of given player id"
+      parameters: 
+        - in: path
+          name: playerid
+          required: true 
+          type: integer
+          description: "The player id used in the nba_api"
+      responses:
+        200:
+          description: "Successfully retrieve the common player info for a given player id"
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              headers:
+                type: array
+                items: {}
+              rowSet:
+                type: array
+                items: {}
