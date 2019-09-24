@@ -1,15 +1,12 @@
 <template>
   <div id="app">
-    <PlayerInfo/>
-    {{ this.players }}
+    <PlayerInfo :players="this.players"/>
   </div>
 </template>
 
 <script>
 const axios = require("axios").default
 import PlayerInfo from "./components/PlayerInfo"
-
-
 
 export default {
   name: 'app',
@@ -25,7 +22,7 @@ export default {
     var vm = this
     axios.get("http://localhost:5000/api/allplayers")
     .then(function(response) {
-      vm.players = response
+      vm.players = response.data
     })
   }
 }
