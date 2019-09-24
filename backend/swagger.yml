@@ -24,6 +24,9 @@ paths:
           schema:
             type: array
             items:
-              type: array 
-              # Define any-type array
-              items: {}
+              type: object
+              properties:
+                name: 
+                  type: string
+                id:
+                  type: integer
