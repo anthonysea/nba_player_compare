@@ -1,9 +1,8 @@
 <template>
 <div>
-    <input name="playerInput" id="playerInput" type="text" :value="value" v-on="listeners" list="playerList">
-    {{ formatDatalist }}
+    <input name="playerInput" autocomplete="off" id="playerInput" type="text" :value="value" v-on="listeners" list="playerList"/>
     <datalist id="playerList">
-        <option :v-for="data in formatDatalist">{{ data }}</option>
+        <option v-for="player in datalist" :key="player.id" :value="player.name"> {{ player.name }}</option>
     </datalist>
 </div>   
 </template>
@@ -21,6 +20,11 @@ export default {
             default: new Array()
         }
     },
+    data() {
+        return {
+            playerOption: ""
+        }
+    },
     computed: {
         listeners() {
             return {
@@ -28,13 +32,13 @@ export default {
                 input: event => this.$emit("input", event.target.value)
             }
         },
-        formatDatalist() {
-            var formattedDatalist = []
-            for (let entry of this.datalist) {
-                formattedDatalist.push(entry["name"])
-            }
-            return formattedDatalist
-        }
+        // formatDatalist() {
+        //     var formattedDatalist = []
+        //     for (let entry of this.datalist) {
+        //         formattedDatalist.push(entry["name"])
+        //     }
+        //     return formattedDatalist
+        // }
     }
 }
 </script>
