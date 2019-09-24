@@ -1,13 +1,14 @@
 <template>
 <div>
-    <input id="playerInput" type="text" :value="value" v-on="listeners">
+    <input name="playerInput" id="playerInput" type="text" :value="value" v-on="listeners" list="playerList">
     {{ formatDatalist }}
+    <datalist id="playerList">
+        <option :v-for="data in formatDatalist">{{ data }}</option>
+    </datalist>
 </div>   
 </template>
 
 <script>
-import Awesomplete from "awesomplete"
-
 export default {
     name: "PlayerInput",
     props: {
@@ -19,10 +20,6 @@ export default {
             type: Array,
             default: new Array()
         }
-    },
-    mounted() {
-        let input = document.getElementById("playerInput")
-        new Awesomplete(input, {minChars: 3, list: this.formatDatalist})
     },
     computed: {
         listeners() {
@@ -41,7 +38,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss">
-    @import "../../node_modules/awesomplete/awesomplete.css";
-</style>
