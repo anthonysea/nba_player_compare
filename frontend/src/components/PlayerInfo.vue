@@ -10,6 +10,7 @@
         <!-- <p v-if="this.playerSearchResults.length">{{ this.playerSearchResults }}</p> -->
         {{ this.currentPlayer }}
         {{ this.commonPlayerInfo }}
+        {{ this.careerStats }}
         <div id="player-stats">
             
         </div>
@@ -40,6 +41,7 @@ export default {
         updateCurrentPlayer() {
             this.currentPlayer = this.playerSearchResults[0]
             this.fetchCommonPlayerInfo()
+            this.fetchCareerStats()
         },
         fetchCommonPlayerInfo() {
             var vm = this
@@ -49,7 +51,11 @@ export default {
             })
         },
         fetchCareerStats() {
-            
+            var vm = this
+            axios.get(`http://localhost:5000/api/careerstats/${this.currentPlayer.id}`)
+            .then(function(response) {
+                vm.careerStats = response.data
+            })
         }
     },
     data () {
@@ -58,6 +64,7 @@ export default {
             playerSearchResults: [],
             currentPlayer: {},
             commonPlayerInfo: null,
+            careerStats: null,
         }
     },
 }
