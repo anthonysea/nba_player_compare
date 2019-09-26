@@ -7,7 +7,7 @@
             @input="searchForPlayer"
             @keyup.enter="updateCurrentPlayer"
         />
-        <p v-if="this.playerSearchResults.length">{{ this.playerSearchResults }}</p>
+        <!-- <p v-if="this.playerSearchResults.length">{{ this.playerSearchResults }}</p> -->
         {{ this.currentPlayer }}
         {{ this.commonPlayerInfo }}
         <div id="player-stats">

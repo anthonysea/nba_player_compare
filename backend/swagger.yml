@@ -56,3 +56,27 @@ paths:
               rowSet:
                 type: array
                 items: {}
+  /careerstats/{playerid}:
+    get:
+      operationId: "endpoints.careerstats"
+      tags:
+      - "CareerStats"
+      summary: "Endpoint to retrieve the career stats of a given player"
+      parameters:
+        - in: path
+          name: playerid
+          required: true
+          type: integer
+          description: "The player id used in the nba_api"
+        - in: query
+          name: per_mode
+          required: false
+          type: string
+          description: "The type of per to use for the stats (Totals/PerGame/Per36)"
+      responses:
+        200:
+          description: "Successfully retrieve the common player info for a given player id"
+          schema:
+            type: array
+            items: {}
+            
