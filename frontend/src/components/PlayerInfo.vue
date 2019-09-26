@@ -8,12 +8,12 @@
             @keyup.enter="updateCurrentPlayer"
         />
         <!-- <p v-if="this.playerSearchResults.length">{{ this.playerSearchResults }}</p> -->
-        {{ this.currentPlayer }}
-        {{ this.commonPlayerInfo }}
-        {{ this.careerStats }}
-        <div id="player-stats">
-            
-        </div>
+        <!-- {{ this.currentPlayer }} -->
+        <!-- {{ this.careerStats }} -->
+        <PlayerBasicStats
+            v-if="this.commonPlayerInfo"
+            :basic-stats="this.commonPlayerInfo"
+        />
     </div>
 </template>
 
