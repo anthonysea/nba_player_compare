@@ -1,7 +1,20 @@
 <template>
     <div>
-        <span v-for="item in this.$data"> {{ item }}</span>
-        
+        <span id="player-name">{{ this.name }}</span><br/>
+        <span id="birth-date">Birthdate: </span>{{ this.birthdate }}<br/>
+        <span id="country">Country: </span>{{ this.country }}<br/>
+        <span id="height">Height: </span> {{ this.height }}<br/>
+        <span id="weight">Weight: </span>{{ this.weight }} lbs<br/>
+        <span id="jersey-number">Number: </span>{{ this.number }} <br/>
+        <span id="years-in-league">Years In League: </span>{{ this.yearsInLeague }} <br/>
+        <span id="position">Position: </span>{{ this.position }} <br/>
+        <span id="rosterStatus">Roster Status: </span>{{ this.rosterStatus }} <br/>
+        <span id="team">Team: </span>{{ this.team }} <br/>
+        <span id="fromYear">Played From: </span> {{ this.fromYear }} <br/>
+        <span id="toYear">Played To: </span>{{ this.toYear }} <br/>   
+        <span id="draft-year">Draft Year: </span>{{ this.draftYear }} <br/>
+        <span id="draft-round">Draft Round: </span>{{ this.draftRound }} <br/>
+        <span id="draft-number">Draft Number: </span> {{ this.draftNumber }} <br/>
     </div>
 </template>
 
@@ -56,3 +69,9 @@ export default {
 
 }
 </script>
+
+<style lang="scss">
+    div > span {
+        font-weight: bold;
+    }
+</style>

@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <PlayerInfo :players="this.players"/>
+    <PlayerInfo :players="this.players"/>
   </div>
 </template>
 
@@ -18,7 +19,7 @@ export default {
       players: null
     }
   },
-  mounted() {
+  created() {
     var vm = this
     axios.get("http://localhost:5000/api/allplayers")
     .then(function(response) {
@@ -30,7 +31,8 @@ export default {
 
 <style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  // font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family:'Courier New', Courier, monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
