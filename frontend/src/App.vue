@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <header><h3>NBA Player VS</h3></header>
     <PlayerInfo :players="this.players"/>
     <PlayerInfo :players="this.players"/>
   </div>
@@ -31,12 +32,24 @@ export default {
 
 <style lang="scss">
 #app {
-  // font-family: 'Avenir', Helvetica, Arial, sans-serif;
   font-family:'Courier New', Courier, monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
+  margin: 0 auto;
   margin-top: 60px;
+  max-width: 80em;
+
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "header header"
+    "p1 p1"
+    "p1 p1";
+}
+
+header {
+  grid-area: header;
 }
 </style>

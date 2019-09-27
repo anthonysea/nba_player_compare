@@ -1,6 +1,6 @@
 <template>
     <div>
-        <span id="player-name">{{ this.name }}</span><br/>
+        <h4 id="player-name">{{ this.name }}</h4>
         <span id="birth-date">Birthdate: </span>{{ this.birthdate }}<br/>
         <span id="country">Country: </span>{{ this.country }}<br/>
         <span id="height">Height: </span> {{ this.height }}<br/>

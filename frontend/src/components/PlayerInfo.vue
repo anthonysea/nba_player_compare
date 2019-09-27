@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="player-info">
         <PlayerInput
             v-model="inputText"
             :datalist="this.playerSearchResults"
@@ -7,9 +7,6 @@
             @input="searchForPlayer"
             @keyup.enter="updateCurrentPlayer"
         />
-        <!-- <p v-if="this.playerSearchResults.length">{{ this.playerSearchResults }}</p> -->
-        <!-- {{ this.currentPlayer }} -->
-        <!-- {{ this.careerStats }} -->
         <PlayerBasicStats
             v-if="this.commonPlayerInfo"
             :basic-stats="this.commonPlayerInfo"
@@ -69,3 +66,9 @@ export default {
     },
 }
 </script>
+
+<style lang="scss">
+    player-info {
+        grid-area: p1;
+    }
+</style>
