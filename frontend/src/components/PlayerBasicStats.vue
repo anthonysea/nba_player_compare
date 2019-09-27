@@ -43,6 +43,25 @@ export default {
 
         }
     },
+    created() {
+            this.name = this.basicStats['rowSet'][0][3]
+            this.birthdate = this.basicStats['rowSet'][0][6]
+            this.country = this.basicStats['rowSet'][0][8]
+            this.college = this.basicStats['rowSet'][0][7]
+            this.lastAffiliation = this.basicStats['rowSet'][0][9]
+            this.height = this.basicStats['rowSet'][0][10]
+            this.weight = this.basicStats['rowSet'][0][11]
+            this.number = this.basicStats['rowSet'][0][13]
+            this.position = this.basicStats['rowSet'][0][14]
+            this.yearsInLeague = this.basicStats['rowSet'][0][12]
+            this.rosterStatus = this.basicStats['rowSet'][0][15]
+            this.team = `${this.basicStats['rowSet'][0][20]} ${this.basicStats['rowSet'][0][17]}`
+            this.fromYear = this.basicStats['rowSet'][0][22]
+            this.toYear = this.basicStats['rowSet'][0][23]
+            this.draftYear = this.basicStats['rowSet'][0][27]
+            this.draftRound = this.basicStats['rowSet'][0][28]
+            this.draftNumber = this.basicStats['rowSet'][0][29]
+    },
     watch: {
         basicStats: function(newVal, oldVal) {
             this.name = newVal['rowSet'][0][3]
@@ -62,9 +81,7 @@ export default {
             this.draftYear = newVal['rowSet'][0][27]
             this.draftRound = newVal['rowSet'][0][28]
             this.draftNumber = newVal['rowSet'][0][29]
-        }
-        
-            
+        }     
     },
 
 }

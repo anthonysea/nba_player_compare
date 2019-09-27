@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <header><h3>NBA Player VS</h3></header>
-    <PlayerInfo :players="this.players"/>
-    <PlayerInfo :players="this.players"/>
+    <header><h2>NBA Player VS</h2></header>
+    <PlayerInfo :players="this.players" datalist-name="playerList1"/>
+    <PlayerInfo :players="this.players" datalist-name="playerList2"/>
   </div>
 </template>
 

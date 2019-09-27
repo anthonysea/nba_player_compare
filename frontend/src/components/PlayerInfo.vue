@@ -3,8 +3,9 @@
         <PlayerInput
             v-model="inputText"
             :datalist="this.playerSearchResults"
+            :datalist-name="this.datalistName"
             placeholder="Player to search for"
-            @input="searchForPlayer"
+            @input="this.searchForPlayer"
             @keyup.enter="updateCurrentPlayer"
         />
         <PlayerBasicStats
@@ -24,7 +25,7 @@ import PlayerCareerSummary from "./PlayerCareerSummary"
 
 export default {
     name: "PlayerInfo",
-    props: ['players'],
+    props: ["players", "datalistName"],
     components: {
         PlayerInput,
         PlayerBasicStats,
@@ -35,10 +36,10 @@ export default {
             var fuse = new Fuse(this.players, {keys: ["name"], threshold: 0.5, shouldShort: true})
             this.playerSearchResults = fuse.search(this.inputText).slice(0, 10)
         }, 300),
-        updateCurrentPlayer() {
+        async updateCurrentPlayer() {
             this.currentPlayer = this.playerSearchResults[0]
-            this.fetchCommonPlayerInfo()
-            this.fetchCareerStats()
+            await this.fetchCommonPlayerInfo()
+            await this.fetchCareerStats()
         },
         fetchCommonPlayerInfo() {
             var vm = this

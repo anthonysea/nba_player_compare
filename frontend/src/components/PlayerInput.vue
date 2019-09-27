@@ -1,7 +1,7 @@
 <template>
 <div>
-    <input name="playerInput" autocomplete="off" id="playerInput" type="text" :value="value" v-on="listeners" list="playerList"/>
-    <datalist id="playerList">
+    <input name="playerInput" autocomplete="off" id="playerInput" type="text" :value="value" v-on="listeners" :list="this.datalistName"/>
+    <datalist :id="this.datalistName">
         <option v-for="player in datalist" :key="player.id" :value="player.name"> {{ player.name }}</option>
     </datalist>
 </div>   
@@ -13,11 +13,14 @@ export default {
     props: {
         value: {
             type: String,
-            default: ""
+            default: "",
         },
         datalist: {
             type: Array,
             default: new Array()
+        },
+        datalistName: {
+            type: String,
         }
     },
     data() {
@@ -32,13 +35,6 @@ export default {
                 input: event => this.$emit("input", event.target.value)
             }
         },
-        // formatDatalist() {
-        //     var formattedDatalist = []
-        //     for (let entry of this.datalist) {
-        //         formattedDatalist.push(entry["name"])
-        //     }
-        //     return formattedDatalist
-        // }
     }
 }
 </script>
