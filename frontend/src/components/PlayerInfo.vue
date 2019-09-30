@@ -12,10 +12,10 @@
             v-if="this.commonPlayerInfo"
             :basic-stats="this.commonPlayerInfo"
         />
-        <PlayerCareerSummary
+        <!-- <PlayerCareerSummary
             v-if="this.careerStats"
             :career-stats="this.careerStats"
-        />
+        /> -->
     </div>
 </template>
 
@@ -25,7 +25,7 @@ const Fuse = require('fuse.js')
 const axios = require("axios").default
 import PlayerInput from "./PlayerInput"
 import PlayerBasicStats from "./PlayerBasicStats"
-import PlayerCareerSummary from "./PlayerCareerSummary"
+// import PlayerCareerSummary from "./PlayerCareerSummary"
 
 export default {
     name: "PlayerInfo",
@@ -33,7 +33,7 @@ export default {
     components: {
         PlayerInput,
         PlayerBasicStats,
-        PlayerCareerSummary,
+        // PlayerCareerSummary,
     },
     methods: {
         searchForPlayer: _.debounce(function() {
@@ -43,7 +43,8 @@ export default {
         async updateCurrentPlayer() {
             this.currentPlayer = this.playerSearchResults[0]
             await this.fetchCommonPlayerInfo()
-            await this.fetchCareerStats()
+            // await this.fetchCareerStats()
+            this.$emit('updateCurrentPlayer', this.currentPlayer.id)
         },
         fetchCommonPlayerInfo() {
             var vm = this
@@ -52,13 +53,6 @@ export default {
                 vm.commonPlayerInfo = response.data
             })
         },
-        fetchCareerStats() {
-            var vm = this
-            axios.get(`http://localhost:5000/api/careerstats/${this.currentPlayer.id}`)
-            .then(function(response) {
-                vm.careerStats = response.data
-            })
-        }
     },
     data () {
         return {
@@ -66,7 +60,7 @@ export default {
             playerSearchResults: [],
             currentPlayer: {},
             commonPlayerInfo: null,
-            careerStats: null,
+            // careerStats: null,
         }
     },
 }

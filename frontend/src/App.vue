@@ -1,8 +1,16 @@
 <template>
   <div id="app">
     <header><h2>NBA Player VS</h2></header>
-    <PlayerInfo :players="this.players" datalist-name="playerList1"/>
-    <PlayerInfo :players="this.players" datalist-name="playerList2"/>
+    <PlayerInfo 
+      :players="this.players" 
+      datalist-name="playerList1"
+      @updateCurrentPlayer="addNewPlayer"
+    />
+    <PlayerInfo 
+      :players="this.players" 
+      datalist-name="playerList2"
+      @updateCurrentPlayer="addNewPlayer"
+    />
   </div>
 </template>
 
@@ -18,16 +26,31 @@ export default {
   data() {
     return {
       players: null,
-      comparing: []
+      comparing: {},
+      test: null,
     }
   },
   created() {
-    document.title = "NBA Player VS"
+    document.title = "NBA Player VS" 
     var vm = this
     axios.get("http://localhost:5000/api/allplayers")
     .then(function(response) {
       vm.players = response.data
     })
+  },
+  methods: {
+    addNewPlayer(playerId) {
+      this.test = playerId
+      this.fetchCareerStats(playerId)
+      
+    },
+    fetchCareerStats(playerId) {
+      var vm = this
+      axios.get(`http://localhost:5000/api/careerstats/${playerId}`)
+      .then(function(response) {
+        vm.comparing[playerId] = response.data
+      })
+    }
   }
 }
 </script>
