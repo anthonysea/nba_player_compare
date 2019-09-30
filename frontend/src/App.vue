@@ -17,10 +17,12 @@ export default {
   },
   data() {
     return {
-      players: null
+      players: null,
+      comparing: []
     }
   },
   created() {
+    document.title = "NBA Player VS"
     var vm = this
     axios.get("http://localhost:5000/api/allplayers")
     .then(function(response) {
@@ -37,8 +39,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   margin: 0 auto;
-  margin-top: 60px;
-  max-width: 80em;
+  max-width: 110em;
 
   display: grid;
   grid-template-columns: 50% 50%;

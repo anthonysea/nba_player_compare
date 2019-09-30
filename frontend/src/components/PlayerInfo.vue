@@ -12,6 +12,10 @@
             v-if="this.commonPlayerInfo"
             :basic-stats="this.commonPlayerInfo"
         />
+        <PlayerCareerSummary
+            v-if="this.careerStats"
+            :career-stats="this.careerStats"
+        />
     </div>
 </template>
 
