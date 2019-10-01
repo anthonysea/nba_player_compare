@@ -11,23 +11,28 @@
       datalist-name="playerList2"
       @updateCurrentPlayer="addNewPlayer"
     />
+    <CareerStats
+      v-show="this.comparing"
+      :comparing="this.comparing"
+    />
   </div>
 </template>
 
 <script>
 const axios = require("axios").default
 import PlayerInfo from "./components/PlayerInfo"
+import CareerStats from "./components/CareerStats"
 
 export default {
   name: 'app',
   components: {
-    PlayerInfo
+    PlayerInfo,
+    CareerStats,
   },
   data() {
     return {
       players: null,
-      comparing: {},
-      test: null,
+      comparing: null,
     }
   },
   created() {
@@ -40,15 +45,16 @@ export default {
   },
   methods: {
     addNewPlayer(playerId) {
-      this.test = playerId
       this.fetchCareerStats(playerId)
-      
     },
     fetchCareerStats(playerId) {
       var vm = this
       axios.get(`http://localhost:5000/api/careerstats/${playerId}`)
       .then(function(response) {
-        vm.comparing[playerId] = response.data
+        if (!vm.comparing) {
+          vm.comparing = {}
+        }
+        vm.$set(vm.comparing, playerId, response.data)
       })
     }
   }
@@ -62,7 +68,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   margin: 0 auto;
-  max-width: 110em;
+  max-width: 60em;
 
   display: grid;
   grid-template-columns: 50% 50%;
@@ -70,10 +76,18 @@ export default {
   grid-template-areas:
     "header header"
     "p1 p1"
-    "p1 p1";
+    "career-stats career-stats";
 }
 
 header {
   grid-area: header;
+}
+
+#career-stats {
+  grid-area: career-stats;
+}
+
+td {
+  padding: 4px;
 }
 </style>
