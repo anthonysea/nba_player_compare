@@ -68,7 +68,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   margin: 0 auto;
-  max-width: 60em;
+  max-width: 80em;
 
   display: grid;
   grid-template-columns: 50% 50%;
