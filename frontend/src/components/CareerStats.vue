@@ -66,10 +66,16 @@ export default {
     methods: {
         cleanStatLine(arr) {
             // Filter to remove null values in statline
+            const copy = []
             arr.forEach(function(ele) {
-                if (ele === null) ele = "-"
+                if (ele === null) {
+                    copy.push("-")
+                } else {
+                    copy.push(ele)
+                }
             })
-            return arr
+            console.log(copy)
+            return copy
         }
     },
 }
