@@ -8,9 +8,9 @@
             <td id="table-heading" v-for="heading in headers" :key="heading.id">{{ heading }}</td>
         </tr>
         </thead>
-        <tr v-for="(player, rowSet, ind) in comparing" :key="player.id">
+        <tr v-for="player in careerStatsRS" :key="player.id">
             <td id="table-heading">{{ player[0] }}</td>
-            <td v-for="stat in player[2]['rowSet'][0].slice(3,24)" :key="stat.id">{{ stat }}</td>
+            <td v-for="stat in cleanStatLine(player.slice(1,22))" :key="stat.id">{{ stat }}</td>
         </tr>
     </table>
     <p>Career Totals - Post Season</p>
@@ -21,9 +21,9 @@
             <td id="table-heading" v-for="heading in headers" :key="heading.id">{{ heading }}</td>
         </tr>
         </thead>
-        <tr v-for="(player, rowSet, ind) in comparing" :key="player.id">
+        <tr v-for="player in careerStatsPS" :key="player.id">
             <td id="table-heading">{{ player[0] }}</td>
-            <td v-for="stat in player[4]['rowSet'][0].slice(3,24)" :key="stat.id">{{ stat }}</td>
+            <td v-for="stat in cleanStatLine(player.slice(1,22))" :key="stat.id">{{ stat }}</td>
         </tr>
     </table>
 </div>
@@ -38,6 +38,8 @@ export default {
             heading: "",
             player: [],
             stat: "",
+            careerStatsRS: {},
+            careerStatsPS: {},
         }
     },
     watch: {
@@ -47,8 +49,27 @@ export default {
                 if (!newVal) {
                     return
                 }
+                // console.log(JSON.stringify(newVal))
                 this.headers = newVal[Object.keys(newVal)[0]][2]['headers'].slice(3,24)
+
+                for(var ele in newVal) {
+                    console.log(newVal[ele])
+                    this.$set(this.careerStatsRS, ele, newVal[ele][2]['rowSet'][0].slice(3,24))
+                    this.careerStatsRS[ele].unshift(newVal[ele][0])
+                    
+                    this.$set(this.careerStatsPS, ele, newVal[ele][4]['rowSet'][0].slice(3,24))
+                    this.careerStatsPS[ele].unshift(newVal[ele][0])
+                }
             }
+        }
+    },
+    methods: {
+        cleanStatLine(arr) {
+            // Filter to remove null values in statline
+            arr.forEach(function(ele) {
+                if (ele === null) ele = "-"
+            })
+            return arr
         }
     },
 }
