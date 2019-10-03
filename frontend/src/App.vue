@@ -44,10 +44,10 @@ export default {
     })
   },
   methods: {
-    addNewPlayer(playerId) {
-      this.fetchCareerStats(playerId)
+    addNewPlayer(playerId, playerName) {
+      this.fetchCareerStats(playerId, playerName)
     },
-    fetchCareerStats(playerId) {
+    fetchCareerStats(playerId, playerName) {
       var vm = this
       axios.get(`http://localhost:5000/api/careerstats/${playerId}`)
       .then(function(response) {
@@ -55,6 +55,7 @@ export default {
           vm.comparing = {}
         }
         vm.$set(vm.comparing, playerId, response.data)
+        vm.comparing[playerId].unshift(playerName)
       })
     }
   }

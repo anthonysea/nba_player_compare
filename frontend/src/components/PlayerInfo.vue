@@ -37,8 +37,8 @@ export default {
         updateCurrentPlayer() {
             this.currentPlayer = this.playerSearchResults[0]
             this.fetchCommonPlayerInfo()
-            this.$emit('updateCurrentPlayer', this.currentPlayer.id)
-            this.$root.$emit('updateCurrentPlayer', this.currentPlayer.name)
+            this.$emit('updateCurrentPlayer', this.currentPlayer.id, this.currentPlayer.name)
+            // this.$root.$emit('updateCurrentPlayer', this.currentPlayer.name)
         },
         fetchCommonPlayerInfo() {
             var vm = this

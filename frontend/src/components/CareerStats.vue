@@ -9,8 +9,8 @@
         </tr>
         </thead>
         <tr v-for="(player, rowSet, ind) in comparing" :key="player.id">
-            <td id="table-heading">{{ playerNames[ind] }}</td>
-            <td v-for="stat in player[1]['rowSet'][0].slice(3,24)" :key="stat.id">{{ stat }}</td>
+            <td id="table-heading">{{ player[0] }}</td>
+            <td v-for="stat in player[2]['rowSet'][0].slice(3,24)" :key="stat.id">{{ stat }}</td>
         </tr>
     </table>
     <p>Career Totals - Post Season</p>
@@ -22,8 +22,8 @@
         </tr>
         </thead>
         <tr v-for="(player, rowSet, ind) in comparing" :key="player.id">
-            <td id="table-heading">{{ playerNames[ind] }}</td>
-            <td v-for="stat in player[3]['rowSet'][0].slice(3,24)" :key="stat.id">{{ stat }}</td>
+            <td id="table-heading">{{ player[0] }}</td>
+            <td v-for="stat in player[4]['rowSet'][0].slice(3,24)" :key="stat.id">{{ stat }}</td>
         </tr>
     </table>
 </div>
@@ -38,7 +38,6 @@ export default {
             heading: "",
             player: [],
             stat: "",
-            playerNames: [],
         }
     },
     watch: {
@@ -48,15 +47,10 @@ export default {
                 if (!newVal) {
                     return
                 }
-                this.headers = newVal[Object.keys(newVal)[0]][1]['headers'].slice(3,24)
+                this.headers = newVal[Object.keys(newVal)[0]][2]['headers'].slice(3,24)
             }
         }
     },
-    created() {
-        this.$root.$on('updateCurrentPlayer', player => {
-            this.playerNames.push(player)
-        })
-    }
 }
 </script>
 
