@@ -13,7 +13,7 @@
             <td v-for="stat in cleanStatLine(player.slice(1,22))" :key="stat.id">{{ stat }}</td>
         </tr>
     </table>
-    <p>Career Totals - Post Season</p>
+    <p>Career Totals (Post Season)</p>
     <table>
         <thead>
         <tr>

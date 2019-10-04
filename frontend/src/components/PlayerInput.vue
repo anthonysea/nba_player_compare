@@ -1,7 +1,7 @@
 <template>
 <div>
-    <input name="playerInput" autocomplete="off" id="playerInput" type="text" :value="value" v-on="listeners" :list="this.datalistName"/>
-    <datalist :id="this.datalistName">
+    <input name="playerInput" autocomplete="off" id="playerInput" type="text" :value="value" v-on="listeners" list="player-datalist"/>
+    <datalist id="player-datalist">
         <option v-for="player in datalist" :key="player.id" :value="player.name"> {{ player.name }}</option>
     </datalist>
 </div>   
@@ -19,9 +19,6 @@ export default {
             type: Array,
             default: new Array()
         },
-        datalistName: {
-            type: String,
-        }
     },
     data() {
         return {
