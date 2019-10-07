@@ -1,15 +1,18 @@
 <template>
   <div id="app">
     <header><h2>NBA Player VS</h2></header>
-    <PlayerInfo 
-      :players="this.players" 
-      datalist-name="playerList1"
-      @updateCurrentPlayer="addNewPlayer"
+    <PlayerInput
+      id="player-input"
+      v-model="inputText"
+      :datalist="this.playerSearchResults"
+      placeholder="Player to search for"
+      @input="this.searchForPlayer"
+      @keyup.enter="addNewPlayer"
     />
     <PlayerInfo 
-      :players="this.players" 
-      datalist-name="playerList2"
-      @updateCurrentPlayer="addNewPlayer"
+      v-for="player in playerNamesIds"
+      :player-name-id="player"
+      :key="player.id"
     />
     <CareerStats
       v-show="this.comparing"
@@ -20,19 +23,26 @@
 
 <script>
 const axios = require("axios").default
+var _ = require('lodash')
+const Fuse = require('fuse.js')
 import PlayerInfo from "./components/PlayerInfo"
 import CareerStats from "./components/CareerStats"
+import PlayerInput from "./components/PlayerInput"
 
 export default {
   name: 'app',
   components: {
+    PlayerInput,
     PlayerInfo,
     CareerStats,
   },
   data() {
     return {
-      players: null,
+      playersToSearch: null,
       comparing: null,
+      inputText: "",
+      playerNamesIds: [],
+      playerSearchResults: [],
     }
   },
   created() {
@@ -40,22 +50,31 @@ export default {
     var vm = this
     axios.get("http://localhost:5000/api/allplayers")
     .then(function(response) {
-      vm.players = response.data
+      vm.playersToSearch = response.data
     })
   },
   methods: {
+    searchForPlayer: _.debounce(function() {
+            var fuse = new Fuse(this.playersToSearch, {keys: ["name"], threshold: 0.5, shouldShort: true})
+            this.playerSearchResults = fuse.search(this.inputText).slice(0, 10)
+        }, 300),
     addNewPlayer(playerId, playerName) {
-      this.fetchCareerStats(playerId, playerName)
+      if (!this.playerNamesIds.includes(this.playerSearchResults[0])) {
+        this.playerNamesIds.push(this.playerSearchResults[0])
+        this.fetchCareerStats(this.playerSearchResults[0])
+      }
+      
     },
-    fetchCareerStats(playerId, playerName) {
+    fetchCareerStats(player) {
       var vm = this
-      axios.get(`http://localhost:5000/api/careerstats/${playerId}`)
+      // console.log(JSON.stringify(player))
+      axios.get(`http://localhost:5000/api/careerstats/${player.id}`)
       .then(function(response) {
         if (!vm.comparing) {
           vm.comparing = {}
         }
-        vm.$set(vm.comparing, playerId, response.data)
-        vm.comparing[playerId].unshift(playerName)
+        vm.$set(vm.comparing, player.id, response.data)
+        vm.comparing[player.id].unshift(player.name)
       })
     }
   }
@@ -75,9 +94,10 @@ export default {
   grid-template-columns: 50% 50%;
   grid-template-rows: auto;
   grid-template-areas:
-    "header header"
-    "p1 p1"
-    "career-stats career-stats";
+    "header header header"
+    "input input input"
+    "p1 p1 p1 "
+    "career-stats career-stats career-stats";
 }
 
 header {
@@ -86,6 +106,10 @@ header {
 
 #career-stats {
   grid-area: career-stats;
+}
+
+#player-input {
+  grid-area: input;
 }
 
 td {
