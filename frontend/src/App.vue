@@ -59,7 +59,8 @@ export default {
             this.playerSearchResults = fuse.search(this.inputText).slice(0, 10)
         }, 300),
     addNewPlayer(playerId, playerName) {
-      if (!this.playerNamesIds.includes(this.playerSearchResults[0])) {
+      // Check to see if player has already been added & that there are less than 6 players already being compared
+      if (!this.playerNamesIds.includes(this.playerSearchResults[0]) && (this.playerNamesIds.length < 6)) {
         this.playerNamesIds.push(this.playerSearchResults[0])
         this.fetchCareerStats(this.playerSearchResults[0])
       }
@@ -91,12 +92,13 @@ export default {
   max-width: 80em;
 
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
   grid-template-areas:
     "header header header"
     "input input input"
-    "p1 p1 p1 "
+    "p1 p1 p1"
+    "p1 p1 p1"
     "career-stats career-stats career-stats";
 }
 
