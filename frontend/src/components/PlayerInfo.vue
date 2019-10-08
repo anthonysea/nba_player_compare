@@ -1,6 +1,6 @@
 <template>
     <div @mouseover="hover=true" @mouseleave="hover=false">
-        <h4 id="player-name">{{ this.name }} <span @click="$emit('removePlayer', basicStats['rowSet'][0][0])" v-if="hover" id="remove-button">[x]</span></h4>
+        <h4 id="player-name">{{ this.name }} <span @click="$emit('remove-player', playerNameId.id)" v-if="hover" id="remove-button">[x]</span></h4>
         <span id="birth-date">Birthdate: </span>{{ this.birthdate }}<br/>
         <span id="country">Country: </span>{{ this.country }}<br/>
         <span id="height">Height: </span> {{ this.height }}<br/>
@@ -57,7 +57,6 @@ export default {
                 axios.get(`http://localhost:5000/api/commonplayerinfo/${player.id}`)
                 .then(function(response) {
                     // vm.playerInfo = response.data
-
                     vm.name = response.data['rowSet'][0][3]
                     vm.birthdate = response.data['rowSet'][0][6]
                     vm.country = response.data['rowSet'][0][8]

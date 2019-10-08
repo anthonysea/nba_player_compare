@@ -13,6 +13,7 @@
       v-for="player in playerNamesIds"
       :player-name-id="player"
       :key="player.id"
+      @remove-player="removePlayerFn"
     />
     <CareerStats
       v-show="this.comparing"
@@ -28,6 +29,7 @@ const Fuse = require('fuse.js')
 import PlayerInfo from "./components/PlayerInfo"
 import CareerStats from "./components/CareerStats"
 import PlayerInput from "./components/PlayerInput"
+import Vue from 'vue'
 
 export default {
   name: 'app',
@@ -77,6 +79,10 @@ export default {
         vm.$set(vm.comparing, player.id, response.data)
         vm.comparing[player.id].unshift(player.name)
       })
+    },
+    removePlayerFn(playerId) {
+      this.playerNamesIds = this.playerNamesIds.filter(player => player.id !== playerId)
+      Vue.delete(this.comparing, playerId)
     }
   }
 }
