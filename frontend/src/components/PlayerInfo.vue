@@ -1,20 +1,20 @@
 <template>
     <div @mouseover="hover=true" @mouseleave="hover=false">
         <h4 id="player-name">{{ this.name }} <span @click="$emit('remove-player', playerNameId.id)" v-if="hover" id="remove-button">[x]</span></h4>
-        <span id="birth-date">Birthdate: </span>{{ this.birthdate }}<br/>
-        <span id="country">Country: </span>{{ this.country }}<br/>
-        <span id="height">Height: </span> {{ this.height }}<br/>
-        <span id="weight">Weight: </span>{{ this.weight }} lbs<br/>
-        <span id="jersey-number">Number: </span>{{ this.number }} <br/>
-        <span id="years-in-league">Years In League: </span>{{ this.yearsInLeague }} <br/>
-        <span id="position">Position: </span>{{ this.position }} <br/>
-        <span id="rosterStatus">Roster Status: </span>{{ this.rosterStatus }} <br/>
-        <span id="team">Team: </span>{{ this.team }} <br/>
-        <span id="fromYear">Played From: </span> {{ this.fromYear }} <br/>
-        <span id="toYear">Played To: </span>{{ this.toYear }} <br/>   
-        <span id="draft-year">Draft Year: </span>{{ this.draftYear }} <br/>
-        <span id="draft-round">Draft Round: </span>{{ this.draftRound }} <br/>
-        <span id="draft-number">Draft Number: </span> {{ this.draftNumber }} <br/>
+        <span id="info-heading">Birthdate: </span>{{ this.birthdate }}<br/>
+        <span id="info-heading">Country: </span>{{ this.country }}<br/>
+        <span id="info-heading">Height: </span> {{ this.height }}<br/>
+        <span id="info-heading">Weight: </span>{{ this.weight }} lbs<br/>
+        <span id="info-heading">Number: </span>{{ this.number }} <br/>
+        <span id="info-heading">Years In League: </span>{{ this.yearsInLeague }} <br/>
+        <span id="info-heading">Position: </span>{{ this.position }} <br/>
+        <span id="info-heading">Roster Status: </span>{{ this.rosterStatus }} <br/>
+        <span id="info-heading">Team: </span>{{ this.team }} <br/>
+        <span id="info-heading">Played From: </span> {{ this.fromYear }} <br/>
+        <span id="info-heading">Played To: </span>{{ this.toYear }} <br/>   
+        <span id="info-heading">Draft Year: </span>{{ this.draftYear }} <br/>
+        <span id="info-heading">Draft Round: </span>{{ this.draftRound }} <br/>
+        <span id="info-heading">Draft Number: </span> {{ this.draftNumber }} <br/>
     </div>
 </template>
 
@@ -84,5 +84,9 @@ export default {
 <style lang="scss">
     player-info {
         grid-area: p1;
+    }
+
+    #info-heading {
+        font-weight: bold;
     }
 </style>
