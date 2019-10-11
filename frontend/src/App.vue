@@ -19,6 +19,18 @@
       v-show="this.comparing"
       :comparing="this.comparing"
     />
+    <select v-show="this.comparing" v-model="statType" id="stat-list" name="stat-list">
+      <option v-for="stat in statTypes" :value="stat" :key="stat.name">{{ stat.toUpperCase() }}</option>
+    </select>
+
+    <StatsGraph
+      v-show="this.comparing"
+      :comparing="this.comparing"
+      :stat="statType"
+      :regular-season="this.regularSeasonBool"
+    />
+
+
   </div>
 </template>
 
@@ -29,6 +41,7 @@ const Fuse = require('fuse.js')
 import PlayerInfo from "./components/PlayerInfo"
 import CareerStats from "./components/CareerStats"
 import PlayerInput from "./components/PlayerInput"
+import StatsGraph from "./components/StatsGraph"
 import Vue from 'vue'
 
 export default {
@@ -37,6 +50,7 @@ export default {
     PlayerInput,
     PlayerInfo,
     CareerStats,
+    StatsGraph,
   },
   data() {
     return {
@@ -45,6 +59,8 @@ export default {
       inputText: "",
       playerNamesIds: [],
       playerSearchResults: [],
+      statTypes: ["gp", "gs", "min", "fgm", "fg_pct", "fg3m", "fg3a", "fg3_pct", "ftm", "fta", "ft_pct", "oreb", "dreb", "reb", "ast", "stl", "blk", "tov", "pf", "pts"],
+      statType: "",
     }
   },
   created() {
@@ -105,7 +121,8 @@ export default {
     "input input input"
     "p1 p1 p1"
     "p1 p1 p1"
-    "career-stats career-stats career-stats";
+    "career-stats career-stats career-stats"
+    "stat-list stat-list stat-list";
 }
 
 header {
@@ -122,5 +139,9 @@ header {
 
 td {
   padding: 4px;
+}
+
+#stat-list {
+  grid-area: stat-list;
 }
 </style>
