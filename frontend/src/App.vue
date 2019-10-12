@@ -23,11 +23,17 @@
       <option v-for="stat in statTypes" :value="stat" :key="stat.name">{{ stat.toUpperCase() }}</option>
     </select>
 
+    <select v-show="this.comparing" v-model="regularSeasonBool" name="regular-season-bool" id="regular-season-bool">
+      <option :value="true">Regular Season</option>
+      <option :value="false">Post Season</option>
+    </select>
+
     <StatsGraph
+      id="stats-graph"
       v-show="this.comparing"
       :comparing="this.comparing"
       :stat="statType"
-      :regular-season="this.regularSeasonBool"
+      :regular-season-bool="this.regularSeasonBool"
     />
 
 
@@ -61,6 +67,7 @@ export default {
       playerSearchResults: [],
       statTypes: ["gp", "gs", "min", "fgm", "fg_pct", "fg3m", "fg3a", "fg3_pct", "ftm", "fta", "ft_pct", "oreb", "dreb", "reb", "ast", "stl", "blk", "tov", "pf", "pts"],
       statType: "",
+      regularSeasonBool: true,
     }
   },
   created() {
@@ -98,6 +105,7 @@ export default {
     },
     removePlayerFn(playerId) {
       this.playerNamesIds = this.playerNamesIds.filter(player => player.id !== playerId)
+      // Reactive method for deleting properties of objects
       Vue.delete(this.comparing, playerId)
     }
   }
@@ -122,7 +130,8 @@ export default {
     "p1 p1 p1"
     "p1 p1 p1"
     "career-stats career-stats career-stats"
-    "stat-list stat-list stat-list";
+    "stat-list stat-list regular-season-bool"
+    "stats-graph stats-graph stats-graph"
 }
 
 header {
@@ -143,5 +152,13 @@ td {
 
 #stat-list {
   grid-area: stat-list;
+}
+
+#regular-season-bool {
+  grid-area: regular-season-bool;
+}
+
+#stats-graph {
+  grid-area: stats-graph;
 }
 </style>

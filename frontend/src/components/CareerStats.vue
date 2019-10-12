@@ -46,8 +46,6 @@ export default {
             heading: "",
             player: [],
             stat: "",
-            // careerStatsRS: {},
-            // careerStatsPS: {},
         }
     },
     watch: {
@@ -65,21 +63,6 @@ export default {
                     this.headers[8] = "FG3%"
                     this.headers[11] = "FT%"
                 }
-
-                
-                // for (var ele in newVal) {
-                //     console.log(newVal[ele])
-
-                //     this.$set(this.careerStatsRS, ele, newVal[ele][2]['rowSet'][0].slice(3,24))
-                //     // Set first element in array to be the name of the player
-                //     this.careerStatsRS[ele].unshift(newVal[ele][0])
-                    
-                //     this.$set(this.careerStatsPS, ele, newVal[ele][4]['rowSet'][0].slice(3,24))
-                //     // Set first element in array to be the name of the player
-                //     this.careerStatsPS[ele].unshift(newVal[ele][0])
-                // }
-
-                
             }
         }
     },
