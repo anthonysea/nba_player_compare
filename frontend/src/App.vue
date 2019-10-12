@@ -65,8 +65,9 @@ export default {
       inputText: "",
       playerNamesIds: [],
       playerSearchResults: [],
-      statTypes: ["gp", "gs", "min", "fgm", "fg_pct", "fg3m", "fg3a", "fg3_pct", "ftm", "fta", "ft_pct", "oreb", "dreb", "reb", "ast", "stl", "blk", "tov", "pf", "pts"],
-      statType: "",
+      statTypes: ["gp", "gs", "min", "fgm", "fga", "fg_pct", "fg3m", "fg3a", "fg3_pct", "ftm", "fta", "ft_pct", "oreb", "dreb", "reb", 
+                  "ast", "stl", "blk", "tov", "pf", "pts"],
+      statType: "pts",
       regularSeasonBool: true,
     }
   },
