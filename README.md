@@ -23,7 +23,7 @@ npm install
 
 ## Running (Development)
 
-Start the Flask server (front the backend directory)
+Start the Flask server (from the backend directory)
 ```
 python server.py
 ```
