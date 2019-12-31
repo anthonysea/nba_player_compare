@@ -1,11 +1,34 @@
-# nba_player_compare
+NBA Player Reference
+
+Web application to serve as a simple and fluid NBA player reference site built with Flask, Connexion, and Vue.js 
 
 ## Project setup
+
+First, get a copy of the project
 ```
+git clone https://github.com/anthonysea/nba_player_compare.git
+```
+
+Go into the backend directory, and install the requirements with pip
+```
+cd backend
+pip install -r requirements.txt
+```
+
+Go into the frontend directory and install the necessary packages
+```
+cd frontend
 npm install
 ```
 
-### Compiles and hot-reloads for development
+## Running (Development)
+
+Start the Flask server (front the backend directory)
+```
+python server.py
+```
+
+Serve the frontend with hot-reloads for development
 ```
 npm run serve
 ```
@@ -24,6 +47,3 @@ npm run test
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
