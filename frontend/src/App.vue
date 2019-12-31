@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <header><h2>NBA Player VS</h2></header>
+    <header><h2>NBA Player Reference</h2></header>
     <PlayerInput
       id="player-input"
       v-model="inputText"
@@ -72,7 +72,7 @@ export default {
     }
   },
   created() {
-    document.title = "NBA Player VS" 
+    document.title = "NBA Player Reference" 
     var vm = this
     axios.get("http://localhost:5000/api/allplayers")
     .then(function(response) {
