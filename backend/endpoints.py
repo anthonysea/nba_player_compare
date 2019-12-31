@@ -3,7 +3,7 @@ from nba_api.stats.endpoints import commonplayerinfo
 from nba_api.stats.endpoints import playercareerstats
 
 def allplayers():
-    players = commonallplayers.CommonAllPlayers(0, "00", "2018-19")
+    players = commonallplayers.CommonAllPlayers(0, "00", "2019-20")
     resp = []
 
     data = players.data_sets[0].get_dict()["data"]
