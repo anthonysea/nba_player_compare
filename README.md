@@ -1,4 +1,4 @@
-NBA Player Reference
+# NBA Player Reference
 
 Web application to serve as a simple and fluid NBA player reference site built with Flask, Connexion, and Vue.js 
 
