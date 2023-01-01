@@ -17,11 +17,11 @@
     "node-sass": "^7.0.0",
     "package.json": "^2.0.1",
     "plotly.js-dist": "^1.50.0",
-    "sass-loader": "^8.0.0",
+    "sass-loader": "^13.2.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-babel": "^5.0.8",
     "@vue/cli-plugin-eslint": "^5.0.8",
     "@vue/cli-service": "^5.0.8",
     "babel-eslint": "^10.0.1",
